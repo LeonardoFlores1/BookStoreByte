@@ -13,18 +13,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class BookDto {
 
-    @NotNull
-    @NotEmpty
     public String title;
 
     public String description;
 
-    @NotNull
-    @NotEmpty
     public int stock;
 
-    @NotNull
-    @NotEmpty
     public Double salePrice;
 
     public boolean available;

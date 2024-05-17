@@ -7,7 +7,10 @@ import pruebaTecnica.bookStore.dto.request.book.BookDto;
 import pruebaTecnica.bookStore.dto.response.book.BooksResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import pruebaTecnica.bookStore.entity.book.Books;
 import pruebaTecnica.bookStore.service.BookStoreService;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -30,10 +33,10 @@ public class BookStoreController {
     }
     //endpoint 2 put
     @PutMapping("/books/{bookId}")
-    public ResponseEntity<BooksResponse> updateBook(int bookId, @RequestBody BookDto bookDto){
+    public ResponseEntity<BooksResponse> updateBook(@PathVariable(value = "bookId") int bookId, @RequestBody BookDto bookDto){
         try {
-            BooksResponse booksResponse = bookStoreService.post(bookDto);
-            return new ResponseEntity<>(booksResponse, HttpStatus.CREATED);
+            BooksResponse booksResponse = bookStoreService.put(bookDto);
+            return new ResponseEntity<>(booksResponse, HttpStatus.OK);
         } catch (Exception e){
             log.error(e.getMessage(), e);
             return new ResponseEntity<>(BooksResponse.builder().build(), HttpStatus.CONFLICT);
@@ -42,4 +45,18 @@ public class BookStoreController {
     //endpoint 3 delete
 
     //endpoint 3 get
+    @GetMapping("/books")
+    public ResponseEntity<?> getAll(){
+        List<Books> booksList = bookStoreService.get();
+
+        if (booksList != null){
+            if (!booksList.isEmpty()){
+                return new ResponseEntity<>(booksList, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+            }
+        } else {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
