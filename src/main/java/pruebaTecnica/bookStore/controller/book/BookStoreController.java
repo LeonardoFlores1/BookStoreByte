@@ -35,7 +35,7 @@ public class BookStoreController {
     @PutMapping("/books/{bookId}")
     public ResponseEntity<BooksResponse> updateBook(@PathVariable(value = "bookId") int bookId, @RequestBody BookDto bookDto){
         try {
-            BooksResponse booksResponse = bookStoreService.put(bookDto);
+            BooksResponse booksResponse = bookStoreService.put(bookDto, bookId);
             return new ResponseEntity<>(booksResponse, HttpStatus.OK);
         } catch (Exception e){
             log.error(e.getMessage(), e);
@@ -44,6 +44,11 @@ public class BookStoreController {
     }
     //endpoint 3 delete
 
+    @DeleteMapping("/books/{bookId}")
+    public ResponseEntity<?> deleteBook(@PathVariable(value = "bookId") int bookId){
+        bookStoreService.delete(bookId);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
     //endpoint 3 get
     @GetMapping("/books")
     public ResponseEntity<?> getAll(){

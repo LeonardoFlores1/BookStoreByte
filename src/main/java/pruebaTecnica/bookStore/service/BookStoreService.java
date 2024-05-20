@@ -10,7 +10,9 @@ public interface BookStoreService {
 
     BooksResponse post(BookDto bookDto);
 
-    BooksResponse put(BookDto bookDto);
+    BooksResponse put(BookDto bookDto, Integer bookId);
 
     List<Books> get();
+
+    void delete(Integer bookId);
 }

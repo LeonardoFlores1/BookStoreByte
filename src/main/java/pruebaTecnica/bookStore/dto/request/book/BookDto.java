@@ -1,7 +1,5 @@
 package pruebaTecnica.bookStore.dto.request.book;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

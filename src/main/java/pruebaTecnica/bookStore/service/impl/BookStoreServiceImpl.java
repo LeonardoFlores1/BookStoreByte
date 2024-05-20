@@ -49,11 +49,12 @@ public class BookStoreServiceImpl implements BookStoreService{
     }
 
     @Override
-    public BooksResponse put(BookDto bookDto) {
+    public BooksResponse put(BookDto bookDto, Integer bookId) {
         try {
             BooksResponse booksResponse = new BooksResponse();
             Books books = new Books();
 
+            books.setBookId(bookId);
             books.setTitle(bookDto.getTitle());
             books.setDescription(bookDto.getDescription());
             books.setStock(bookDto.getStock());
@@ -82,5 +83,10 @@ public class BookStoreServiceImpl implements BookStoreService{
     @Override
     public List<Books> get() {
         return bookService.findAll();
+    }
+
+    @Override
+    public void delete(Integer bookId) {
+        bookService.deleteById(bookId);
     }
 }
