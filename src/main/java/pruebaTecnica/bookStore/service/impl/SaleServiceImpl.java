@@ -3,6 +3,7 @@ package pruebaTecnica.bookStore.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import pruebaTecnica.bookStore.dto.request.sale.SaleDto;
 import pruebaTecnica.bookStore.dto.response.sale.SaleResponse;
 import pruebaTecnica.bookStore.entity.book.Books;
@@ -11,12 +12,11 @@ import pruebaTecnica.bookStore.repository.impl.BookServiceImpl;
 import pruebaTecnica.bookStore.repository.impl.SaleRepositoryImpl;
 import pruebaTecnica.bookStore.service.SaleService;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 @Slf4j
+@Validated
 public class SaleServiceImpl implements SaleService {
 
     @Autowired

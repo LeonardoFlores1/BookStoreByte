@@ -2,6 +2,7 @@ package pruebaTecnica.bookStore.controller.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pruebaTecnica.bookStore.dto.request.book.BookDto;
 import pruebaTecnica.bookStore.dto.response.book.BooksResponse;
@@ -15,6 +16,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping
+@Validated
 public class BookStoreController {
 
     @Autowired
