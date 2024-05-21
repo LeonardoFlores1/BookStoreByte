@@ -40,7 +40,7 @@ public class TransactionServiceImpl implements TransactionService {
 
             transactionResponse.setBookId(bookId);
             transactionResponse.setSales(dates);
-            transactionResponse.setTotalRevenue(12);
+            transactionResponse.setTotalRevenue(revenue);
             transactionResponse.setCustomers(customerList);
 
             return transactionResponse;

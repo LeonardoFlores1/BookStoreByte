@@ -17,7 +17,7 @@ public class TransactionResponse {
 
     public List<String> sales;
 
-    public int totalRevenue;
+    public double totalRevenue;
 
     public List<String> customers;
 }
