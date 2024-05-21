@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class SaleResponse {
-    public int id;
 
     public int bookId;
 

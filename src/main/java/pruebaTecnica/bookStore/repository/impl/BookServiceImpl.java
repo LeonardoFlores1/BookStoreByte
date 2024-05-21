@@ -2,6 +2,8 @@ package pruebaTecnica.bookStore.repository.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pruebaTecnica.bookStore.entity.book.Books;
 import pruebaTecnica.bookStore.repository.BooksRepository;
@@ -32,7 +34,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Books> findAll() {
-        return repository.findAll();
+    public Page<Books> findAll(Pageable pageable) {
+        try {
+            return repository.findAll(pageable);
+        } catch (Exception e){
+            log.error(e.getMessage(), e);
+            return null;
+        }
     }
 }

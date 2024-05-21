@@ -12,6 +12,7 @@ import pruebaTecnica.bookStore.repository.impl.BookServiceImpl;
 import pruebaTecnica.bookStore.repository.impl.SaleRepositoryImpl;
 import pruebaTecnica.bookStore.service.SaleService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service

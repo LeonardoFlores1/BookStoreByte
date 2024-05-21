@@ -2,6 +2,8 @@ package pruebaTecnica.bookStore.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pruebaTecnica.bookStore.dto.request.book.BookDto;
 import pruebaTecnica.bookStore.dto.response.book.BooksResponse;
@@ -81,8 +83,8 @@ public class BookStoreServiceImpl implements BookStoreService{
     }
 
     @Override
-    public List<Books> get() {
-        return bookService.findAll();
+    public Page<Books> get(Pageable pageable) {
+        return bookService.findAll(pageable);
     }
 
     @Override

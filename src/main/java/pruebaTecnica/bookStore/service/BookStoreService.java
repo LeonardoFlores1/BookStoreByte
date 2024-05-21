@@ -1,5 +1,7 @@
 package pruebaTecnica.bookStore.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import pruebaTecnica.bookStore.dto.request.book.BookDto;
 import pruebaTecnica.bookStore.dto.response.book.BooksResponse;
 import pruebaTecnica.bookStore.entity.book.Books;
@@ -12,7 +14,7 @@ public interface BookStoreService {
 
     BooksResponse put(BookDto bookDto, Integer bookId);
 
-    List<Books> get();
+    Page<Books> get(Pageable pageable);
 
     void delete(Integer bookId);
 }

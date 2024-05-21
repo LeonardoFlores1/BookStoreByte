@@ -1,6 +1,9 @@
 package pruebaTecnica.bookStore.controller.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import pruebaTecnica.bookStore.entity.book.Books;
 import pruebaTecnica.bookStore.service.BookStoreService;
-
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -53,17 +54,16 @@ public class BookStoreController {
     }
     //endpoint 3 get
     @GetMapping("/books")
-    public ResponseEntity<?> getAll(){
-        List<Books> booksList = bookStoreService.get();
+    public ResponseEntity<Page<Books>> getAll(@RequestParam(defaultValue = "0") int page,
+                                              @RequestParam(defaultValue = "12") int size){
 
-        if (booksList != null){
-            if (!booksList.isEmpty()){
-                return new ResponseEntity<>(booksList, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-            }
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Books> booksList= bookStoreService.get(pageable);
+
+        if (!booksList.isEmpty()) {
+            return new ResponseEntity<>(booksList, HttpStatus.OK);
         } else {
-            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
